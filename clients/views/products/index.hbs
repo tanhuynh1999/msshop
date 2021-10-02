@@ -1,0 +1,72 @@
+<div class="row">
+    <div class="main-header">
+        <h4 v-text="titlePage"></h4>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-sm-12 table-responsive">
+                        <el-tabs v-model="activeMain" @tab-click="handleClick">
+                            <el-tab-pane :label="item.label" :name="item.name" :key="item.name"
+                                v-for="item in listData.listActiveMain">
+                                <el-table ref="multipleTable" :data="tableData" style="width: 100%"
+                                    @selection-change="handleSelectionChange" class="t-table">
+                                    <el-table-column type="selection" width="55">
+                                    </el-table-column>
+                                    <el-table-column type="index" label="STT" width="55">
+                                    </el-table-column>
+                                    <el-table-column prop="code" label="Mã sản phẩm" width="120">
+                                    </el-table-column>
+                                    <el-table-column label="Hình ảnh" width="120">
+                                        <template slot-scope="scope">
+                                            <img :src="scope.row.image" alt="" class="image">
+                                        </template>
+                                    </el-table-column>
+                                    <el-table-column prop="name" label="Tên sản phẩm">
+                                    </el-table-column>
+                                    <el-table-column prop="price" label="Giá sản phẩm">
+                                    </el-table-column>
+                                    <el-table-column prop="dateCreate" label="Ngào tạo">
+                                    </el-table-column>
+                                    <el-table-column prop="dateModified" label="Ngày sửa">
+                                    </el-table-column>
+                                    <el-table-column label="Tình trạng">
+                                        <template slot-scope="scope">
+                                            <el-switch v-model="scope.row.active">
+                                            </el-switch>
+                                        </template>
+                                    </el-table-column>
+                                    <el-table-column prop="view" label="Lượt xem">
+                                    </el-table-column>
+                                    <el-table-column label="Hành động">
+                                        <template slot-scope="scope">
+                                            <span>
+                                                <i class="fa fa-eye cp btn-active" aria-hidden="true"></i> |
+                                            </span>
+                                            <span>
+                                                <i class="fa fa-edit cp btn-active" aria-hidden="true"></i> |
+                                            </span>
+                                            <span>
+                                                <i class="fa fa-bell cp btn-active" aria-hidden="true"></i> |
+                                            </span>
+                                            <span>
+                                                <i class="fa fa-comment cp btn-active" aria-hidden="true"></i> |
+                                            </span>
+                                            <span>
+                                                <i class="fa fa-trash cp btn-active" aria-hidden="true"></i>
+                                            </span>
+                                        </template>
+                                    </el-table-column>
+                                </el-table>
+                            </el-tab-pane>
+                        </el-tabs>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/product/app.js"></script>
