@@ -9,11 +9,17 @@
             <div class="card-block">
                 <div class="row">
                     <div class="col-sm-12 table-responsive">
-                        <el-tabs v-model="activeMain" @tab-click="handleClick">
+                        {{> products/common/header}}
+                        <el-tabs v-model="activeMain" @tab-click="handleClickMain">
                             <el-tab-pane :label="item.label" :name="item.name" :key="item.name"
                                 v-for="item in listData.listActiveMain">
-                                <el-table ref="multipleTable" :data="tableData" style="width: 100%"
-                                    @selection-change="handleSelectionChange" class="t-table">
+                                {{> products/common/filter}}
+                                <div class="clear-fix"></div>
+                                <el-table ref="multipleTable"
+                                    :data="tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
+                                    style="width: 100%" class="t-table"
+                                    :default-sort="{prop: 'dateCreate', order: 'descending'}"
+                                    :default-sort="{prop: 'dateModified', order: 'descending'}">
                                     <el-table-column type="selection" width="55">
                                     </el-table-column>
                                     <el-table-column type="index" label="STT" width="55">
@@ -28,10 +34,25 @@
                                     <el-table-column prop="name" label="Tên sản phẩm">
                                     </el-table-column>
                                     <el-table-column prop="price" label="Giá sản phẩm">
+                                        <template slot-scope="scope">
+                                            <i><span v-text="priceProduct(scope.row.price)"></span></i>
+                                        </template>
                                     </el-table-column>
-                                    <el-table-column prop="dateCreate" label="Ngào tạo">
+                                    <el-table-column label="Giá bán">
+                                        <template slot-scope="scope">
+                                            <i><span
+                                                    v-text="priceSum(scope.row.price, scope.row.percentDiscount)"></span></i>
+                                        </template>
                                     </el-table-column>
-                                    <el-table-column prop="dateModified" label="Ngày sửa">
+                                    <el-table-column prop="dateCreate" sortable label="Ngào tạo">
+                                        <template slot-scope="scope">
+                                            <span v-text="dateCreate(scope.row.dateCreate)"></span>
+                                        </template>
+                                    </el-table-column>
+                                    <el-table-column prop="dateModified" sortable label="Ngày sửa">
+                                        <template slot-scope="scope">
+                                            <span v-text="dateModified(scope.row.dateModified)"></span>
+                                        </template>
                                     </el-table-column>
                                     <el-table-column label="Tình trạng">
                                         <template slot-scope="scope">
@@ -41,7 +62,17 @@
                                     </el-table-column>
                                     <el-table-column prop="view" label="Lượt xem">
                                     </el-table-column>
-                                    <el-table-column label="Hành động">
+                                    <el-table-column label="Danh mục" width="200">
+                                        <template slot-scope="scope">
+                                            <el-tag class="mt-1" type="info" closable>Áo thêu</el-tag>
+                                            <el-tag class="mt-1" type="info" closable>Hồng</el-tag>
+                                            <el-tag class="mt-1" type="info" closable>Áo bộ</el-tag>
+                                            <el-tag class="cp mt-1">
+                                                <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                                            </el-tag>
+                                        </template>
+                                    </el-table-column>
+                                    <el-table-column label="Hành động" fixed="right">
                                         <template slot-scope="scope">
                                             <span>
                                                 <i class="fa fa-eye cp btn-active" aria-hidden="true"></i> |
@@ -68,5 +99,8 @@
             </div>
         </div>
     </div>
+</div>
+<div>
+    {{> products/dialog/create}}
 </div>
 <script src="js/product/app.js"></script>

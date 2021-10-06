@@ -38,6 +38,26 @@ html {}
     cursor: pointer;
 }
 
+.mt-1 {
+    margin-top: 1%;
+}
+
+.clear-fix {
+    clear: both;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.float-right {
+    float: right;
+}
+
+.h16 {
+    height: 16px;
+}
+
 /*main*/
 .t-table {}
 
@@ -49,4 +69,28 @@ html {}
 
 .t-table .btn-active:hover {
     color: var(--green);
+}
+
+.t-create .image {
+    width: 80%;
+    height: 150px;
+}
+
+.t-create .image:hover {
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+}
+
+.dropdown-menu {
+    left: -106px !important;
+}
+
+
+/*element*/
+.el-dialog {
+    width: 70% !important;
+    margin-top: 7vh !important;
+}
+
+.el-form--label-top .el-form-item__label {
+    padding: 0px 0 0px !important;
 }

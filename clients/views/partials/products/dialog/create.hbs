@@ -1,0 +1,28 @@
+<el-dialog :title="title" :visible.sync="dialogFormProduct" class="t-create">
+    <el-form :label-position="labelPositionTop" :model="productForm" :rules="productValidate" ref="productForm"
+        label-width="120px" class="demo-ruleForm">
+        <div class="row">
+            <div class="col-lg-3">
+                <el-form-item label="Ảnh minh hoạ">
+                    <el-input @change="imageUpload(productForm.image)" v-model="productForm.image" type="file">
+                    </el-input>
+                    <center class="mt-1">
+                        <img :src="imgUpload" alt="" class="image">
+                    </center>
+                </el-form-item>
+            </div>
+            <div class="col-lg-9">
+                <el-form-item label="Tên sản phẩm" prop="name">
+                    <el-input v-model="productForm.name" placeholder="Vui lòng nhập tên sản phẩm"></el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="createProduct('productForm')">
+                        <i class="fas fa-save    "></i>
+                        Thêm sản phẩm
+                    </el-button>
+                    <el-button @click="resetProductForm('productForm')">Làm mới</el-button>
+                </el-form-item>
+            </div>
+        </div>
+    </el-form>
+</el-dialog>

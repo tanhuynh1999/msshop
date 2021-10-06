@@ -1,0 +1,32 @@
+<label class="badge bg-danger">Có 5 sản phẩm</label>
+<el-row :gutter="20">
+    <el-col :span="6">
+        <el-input placeholder="Tìm kiếm..." prefix-icon="el-icon-search" clearable v-model="search">
+        </el-input>
+    </el-col>
+    <el-col :span="4">
+        <el-select class="w-100" v-model="action" clearable placeholder="Chọn thao tác">
+            <el-option v-for="item in listData.listAction" :key="item._id" :label="item.name" :value="item._id">
+            </el-option>
+        </el-select>
+    </el-col>
+    <el-col :span="3">
+        <el-button type="primary">Xác nhận</el-button>
+    </el-col>
+    <el-col :span="11">
+        <div class="btn-group dropdown-split-warning float-right">
+            <button type="button" class="btn btn-warning">
+                <i class="fa fa-filter" aria-hidden="true"></i>
+            </button>
+            <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split waves-effect waves-light"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="sr-only">Toggle Warning</span>
+            </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item waves-effect waves-light" href="#">Giá tiền</a>
+                <a class="dropdown-item waves-effect waves-light" href="#">Ngày tháng</a>
+                <a class="dropdown-item waves-effect waves-light" href="#">Tìm kiếm nâng cao</a>
+            </div>
+        </div>
+    </el-col>
+</el-row>
